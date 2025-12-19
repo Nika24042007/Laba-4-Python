@@ -47,10 +47,3 @@ class BookCollection(UserList):
             book = super().__getitem__(index)
             return f'{index+1}) "{book.title}" - {book.author} ({book.year}), {book.genre}, ISBN: {book.isbn}\n'
     
-# lib = BookCollection()
-# lib.add_random_book()
-# lib.add_random_book()
-# lib.add_random_book()
-# lib.add_random_book()
-# print(lib.getiem_format(1))
-# print(lib.getiem_format(slice(1,2)))
