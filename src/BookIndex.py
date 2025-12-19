@@ -43,14 +43,6 @@ class BookIndex(UserDict):
                     self.data[item.title] = []
                 self.data[item.title].append(item)
     
-    def update_index(self, list_books:list) -> None:
-        """
-        Обновление словаря
-
-        :param list_books: список из объектов класса Book
-        """
-        self.build_index(list_books)
-
     def __str__(self) -> str:
         """
         Форматирование словаря в строку для выводы при использование команды print

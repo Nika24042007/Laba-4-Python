@@ -1,6 +1,6 @@
-from src.Liblary import Liblary
+from Liblary import Liblary
 import random
-from src.constants import BOOK_AUTHOR, BOOK_NAME, BOOK_GENRE
+from constants import BOOK_AUTHOR, BOOK_NAME, BOOK_GENRE
 
 def Simulation(lib: object, step: int = 1, seed: int = 0) -> None:
     """

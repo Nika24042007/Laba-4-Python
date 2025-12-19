@@ -1,6 +1,6 @@
-from src.Liblary import Liblary
+from Liblary import Liblary
 import re
-from src.Simulation import Simulation
+from Simulation import Simulation
 
 def main() -> None:
     """
@@ -29,12 +29,12 @@ def main() -> None:
             command = input("Введите коменду из списка (add, del, get, find, change, add_random, print): ")
             if command == "add":
                 command = input("Введите (название автор жанр год isbn)(все водить как в примере через пробел не меняя порядок, isbn и год долны бить целыми неотрицательными числами, название, автор и жанр должны быть в двойных кавычках): \n")
-                title = re.search(r'^"(.*?)"\s', command)
-                command = re.sub(r'^"(.*?)"\s',"", command)
-                author = re.search(r'^"(.*?)"\s', command)
-                command = re.sub(r'^"(.*?)"\s',"", command)
-                genre = re.search(r'^"(.*?)"\s', command)
-                command = re.sub(r'^"(.*?)"\s',"", command)
+                title = re.search(r'^"(.*?)"', command)
+                command = re.sub(r'^"(.*?)"',"", command)
+                author = re.search(r'^"(.*?)"', command)
+                command = re.sub(r'^"(.*?)"',"", command)
+                genre = re.search(r'^"(.*?)"', command)
+                command = re.sub(r'^"(.*?)"',"", command)
                 list_command = command.split()
                 try:
                     lib.add(title[0].strip()[1:-1], author[0].strip()[1:-1], genre[0].strip()[1:-1], int(list_command[0]), int(list_command[-1]))

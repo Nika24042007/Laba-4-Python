@@ -1,4 +1,4 @@
-from src.constants import BOOK_AUTHOR, BOOK_GENRE,BOOK_NAME
+from constants import BOOK_AUTHOR, BOOK_GENRE,BOOK_NAME
 import random
 
 class Book:

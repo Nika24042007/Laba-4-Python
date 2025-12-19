@@ -1,5 +1,5 @@
 from collections import UserList
-from src.Book import Book
+from Book import Book
 
 class BookCollection(UserList):
     def __init__(self) -> None:

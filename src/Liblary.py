@@ -1,6 +1,6 @@
-from src.Book import Book
-from src.BookCollection import BookCollection
-from src.BookIndex import BookIndex
+from Book import Book
+from BookCollection import BookCollection
+from BookIndex import BookIndex
 import random
 
 class Liblary:
@@ -17,23 +17,11 @@ class Liblary:
         self.bookgenre = BookIndex(self.bookcol, "genre")
         self.booktitle = BookIndex(self.bookcol, "title")
 
-    def updata_indexs(self) ->None:
-        """
-        Обновление содержания всех словарей
-        
-        """
-        self.bookisbn.update_index(self.bookcol)
-        self.bookauthor.update_index(self.bookcol)
-        self.bookyear.update_index(self.bookcol)
-        self.bookgenre.update_index(self.bookcol)
-        self.booktitle.update_index(self.bookcol)
-
     def add_random(self) ->None:
         """
         Добавление книги с рандомными параметрами в список
         """
         self.bookcol.add_random_book()
-        self.updata_indexs()
         
     def add(self, title: str, author: str, genre: str, year: int, isbn: int) -> None:
         """
@@ -46,7 +34,6 @@ class Liblary:
         :param isbn: Унмкальный номер
         """
         self.bookcol.append(Book(title, author, year, genre, isbn))
-        self.updata_indexs()
 
     def del_book(self, index: int) -> str:
         """
@@ -63,7 +50,6 @@ class Liblary:
         else:
             res = f'"{self.bookcol[index].title}" - {self.bookcol[index].author} ({self.bookcol[index].year}), {self.bookcol[index].genre}, ISBN: {self.bookcol[index].isbn}'
             del self.bookcol[index]
-            self.updata_indexs()
             return res
 
     def del_random(self) -> str:
@@ -73,11 +59,10 @@ class Liblary:
         :return: Книгу, которую идалили или ,если список был пуст, соощение о пустоте
         """
         l = len(self.bookcol)
-        if l > 0:
+        if l > 1:
             a = random.randint(0, l-1)
             res = f'"{self.bookcol[a].title}" - {self.bookcol[a].author} ({self.bookcol[a].year}), {self.bookcol[a].genre}, ISBN: {self.bookcol[a].isbn}'
             del self.bookcol[a]
-            self.updata_indexs()
             return res
         else:
             return "Empty"
@@ -102,7 +87,6 @@ class Liblary:
                     if book.title == title:
                         res += f'"{book.title}" - {book.author} ({book.year}), {book.genre}, ISBN: {book.isbn}\n'
                         self.bookcol.remove(book)
-                self.updata_indexs()
                 return res.strip()
 
     def change(self, index: int, arg: str, new_arg: str) -> str:
@@ -121,25 +105,20 @@ class Liblary:
             if l-1 < index:
                 raise IndexError("no such index")
             else:
-                if arg == "title":
+                if arg is "title":
                     self.bookcol[index].title = new_arg
-                    self.updata_indexs()
                     return "Book change"
                 elif arg == "author":
                     self.bookcol[index].author = new_arg
-                    self.updata_indexs()
                     return "Book change"
                 elif arg == "genre":
                     self.bookcol[index].genre = new_arg
-                    self.updata_indexs()
                     return "Book change"
                 elif arg == "isbn":
                     self.bookcol[index].isbn = new_arg
-                    self.updata_indexs()
                     return "Book change"
                 elif arg == "year":
                     self.bookcol[index].year = new_arg
-                    self.updata_indexs()
                     return "Book change"
                 else:
                     raise ValueError("no such argument")
@@ -152,30 +131,25 @@ class Liblary:
         :param new_arg: Новое название аргумента
         :retur: сообщение о выполненом действие или о пустоте списка
         """
+        index = random.randint(0, len(self.bookcol)-1)
         l = len(self.bookcol)
         if l == 0:
             return "Empty"
         else:
-            index = random.randint(0, len(self.bookcol)-1)
             if arg == "title":
                 self.bookcol[index].title = new_arg
-                self.updata_indexs()
                 return "Book change"
             elif arg == "author":
                 self.bookcol[index].author = new_arg
-                self.updata_indexs()
                 return "Book change"
             elif arg == "genre":
                 self.bookcol[index].genre = new_arg
-                self.updata_indexs()
                 return "Book change"
             elif arg == "isbn":
                 self.bookcol[index].isbn = new_arg
-                self.updata_indexs()
                 return "Book change"
             elif arg == "year":
                 self.bookcol[index].year = new_arg
-                self.updata_indexs()
                 return "Book change"
 
     def find_author(self, author: str) -> str:
